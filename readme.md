@@ -1,117 +1,133 @@
-# Método Simplex com Interface Gráfica
+# 📈 Método Simplex com Interface Gráfica
 
-## Descrição Geral
-Este projeto implementa o Método Simplex para resolver problemas de otimização linear. Ele utiliza a biblioteca Tkinter para criar uma interface gráfica de usuário (GUI) que permite configurar e calcular o problema. O programa aceita como entrada o número de variáveis e restrições, os coeficientes da função objetivo e das restrições, e calcula a solução ótima, o valor máximo da função objetivo, e os preços sombra.
+Projeto desenvolvido para resolver problemas de **Programação Linear** utilizando o **Método Simplex**. A interface gráfica é construída com **Tkinter**, permitindo fácil interação com o usuário.
 
-## Requisitos
-Certifique-se de instalar os seguintes pacotes antes de executar o código. As dependências estão listadas no arquivo `requirements.txt`:
+---
 
-```plaintext
-numpy==<versão>
-tk==<versão>
-```
+## ✅ Funcionalidades
 
-Instale os requisitos com:
+- Interface gráfica intuitiva (Tkinter).
+- Aceita problemas com 2 ou mais variáveis e restrições.
+<!-- - Suporte completo a restrições `<=`, `>=` e `=`. -->
+- Implementação completa do Método Simplex.
+- Exibe:
+  - 🟢 Solução ótima.
+  - 💰 Valor ótimo da função objetivo.
+  <!-- - ⚖️ Preços sombra (fase futura - opcional). -->
+
+---
+
+## 🚀 Como Executar
+
+### 1. Instale os Requisitos
+
+Crie um ambiente virtual (opcional, mas recomendado):
 
 ```bash
-pip install -r requirements.txt
+python -m venv venv
+venv\Scripts\activate  # Windows
 ```
 
-## Estrutura do Código
+Instale as dependências:
 
-### Importação de Bibliotecas
-- `numpy`: Para manipulação de arrays e cálculos numéricos.
-- `tkinter`: Para criação da interface gráfica.
-- `messagebox`: Para exibir mensagens de erro ou informações ao usuário.
+```bash
+pip install numpy
+```
 
-### Funções Principais
+> **Nota:** Não é necessário instalar `tkinter` via `pip`. Ele já vem incluso no Python padrão (distribuição oficial).
 
-#### obter_dados
-- Coleta e valida os dados inseridos na GUI.
-- Retorna os coeficientes da função objetivo, as restrições e os valores constantes.
+---
 
-#### simplex
-- Implementa o algoritmo do Método Simplex.
-- Resolve o problema de otimização linear, retornando:
-    - A solução ótima.
-    - O valor máximo da função objetivo.
-    - Os preços sombra.
+## 🧠 Como Usar
 
-#### iniciar_calculo
-- Conecta a interface gráfica com a lógica do Método Simplex.
-- Exibe o resultado na interface.
+1. Execute o script `simplex.py`:
+   ```bash
+   python simplex.py
+   ```
 
-### Função main
-- Configura e inicializa a interface gráfica.
-- Permite ao usuário:
-    - Inserir o número de variáveis e restrições.
-    - Adicionar os coeficientes necessários.
-    - Calcular os resultados.
-
-## Execução
-O programa é executado a partir da função `main`, que inicializa a GUI.
-
-## Fluxo de Execução
-1. O usuário executa o programa.
 2. Na interface:
-     - Insere o número de variáveis e restrições.
-     - Clica no botão "Criar Campos" para gerar os campos de entrada necessários.
-     - Preenche os coeficientes da função objetivo e das restrições.
-     - Clica em "Calcular".
-3. O programa valida os dados e realiza o cálculo usando o Método Simplex.
-4. O resultado (solução ótima, valor ótimo e preços sombra) é exibido em uma janela pop-up.
+   - Informe o número de variáveis e restrições.
+   - Clique em **"Gerar Campos"**.
+   - Preencha:
+     - Coeficientes da função objetivo.
+     - Coeficientes de cada restrição.
+     <!-- - Operador (`<=`, `>=`, `=`). -->
+     - Termo constante (lado direito).
+   - Clique em **"Calcular"**.
 
-## Detalhes do Algoritmo Simplex
+3. O resultado será exibido em uma janela com:
+   - Solução ótima.
+   - Valor ótimo.
 
-### Entrada:
-- Vetor de coeficientes da função objetivo (`funcObj`).
-- Matriz de coeficientes das restrições (`restric`).
-- Vetor dos termos constantes das restrições (`const`).
+---
 
-### Processo:
-- Constrói o tableau inicial adicionando variáveis de folga.
-- Itera até encontrar uma solução ótima ou detectar inconsistências.
-- Utiliza operações de pivô para ajustar o tableau.
+<!-- ## 💡 Exemplo de Entrada
 
-### Saída:
-- Vetor de solução (`solucao`).
-- Valor máximo da função objetivo (`valorOtimo`).
-- Preços sombra (`precoSombra`).
+- Função objetivo: `Max Z = 3x₁ + 2x₂`
+- Restrições:
+  - `x₁ + x₂ ≤ 4`
+  - `2x₁ + x₂ ≤ 5`
 
-## Interface Gráfica
-
-### Entradas:
-- Número de variáveis.
-- Número de restrições.
-- Coeficientes da função objetivo.
-- Coeficientes e constantes das restrições.
-
-### Botões:
-- "Criar Campos": Gera os campos de entrada para os dados.
-- "Calcular": Executa o cálculo e exibe o resultado.
-
-## Exemplo de Uso
-1. Execute o programa.
-2. Insira 2 como número de variáveis e 2 como número de restrições.
-3. Clique em "Criar Campos".
-4. Insira os coeficientes:
-     - Função objetivo: 3, 5.
-     - Restrições:
-         - 1, 0 e constante 4.
-         - 0, 2 e constante 12.
-5. Clique em "Calcular".
-6. O resultado será exibido como:
+### Resultado Esperado:
 
 ```plaintext
-Solução Ótima: [4.0, 6.0]
-Lucro Ótimo: 38.0
-Preços Sombra: [0.0, 1.0]
-```
+Solução ótima: [0.0, 0.0]
+Valor ótimo: 0.0000
+``` -->
+<!-- 
+> Para outro exemplo com resultado positivo:
+>
+> - FO: `Max Z = 3x₁ + 5x₂`
+> - Restrições:
+>   - `x₁ ≤ 4`
+>   - `2x₂ ≤ 12`
+>
+> **Resultado:** `x₁ = 4`, `x₂ = 6`, `Z = 3*4 + 5*6 = 38` -->
 
-## Erros Comuns
-- Valores inválidos: Insira números válidos nos campos de entrada para evitar erros.
-- Número de variáveis/restrições inconsistente: Certifique-se de criar campos antes de calcular.
+---
 
-## Considerações Finais
-Este programa é uma aplicação prática para resolver problemas de otimização linear, útil para estudantes e profissionais. A modularidade e clareza do código facilitam futuras melhorias ou adaptações.
-# M210
+## 🧩 Estrutura do Código
+
+- `simplex.py`  
+  Implementação do método Simplex com duas fases + interface gráfica.
+
+### Principais Componentes
+
+| Função | Descrição |
+|--------|-----------|
+| `simplex` | Resolve o problema usando o método Simplex com variáveis artificiais. |
+| `executar` | Coleta dados da interface e chama o solver. |
+| `gerar_campos` | Gera dinamicamente os campos de entrada conforme o número de variáveis/restrições. |
+| `root.mainloop()` | Inicializa a interface Tkinter. |
+
+---
+
+<!-- ## ⚠️ Possíveis Erros
+
+- **Erro de shape `inhomogeneous shape`**: ocorre quando as restrições têm comprimentos diferentes. Isso foi corrigido com tratamento uniforme das colunas extras.
+- **Problemas sem solução viável**: o programa detecta e alerta o usuário.
+
+--- -->
+
+## 👨‍🎓 Público-Alvo
+
+- Estudantes de Engenharia, Matemática Aplicada, Administração e áreas correlatas.
+- Professores que queiram demonstrar o algoritmo Simplex visualmente.
+- Qualquer pessoa interessada em otimização linear.
+
+---
+
+## 🏁 Considerações Finais
+
+Este projeto foi desenvolvido como parte da disciplina **M210 - Otimização I**, com foco em:
+
+- Clareza de implementação.
+- Interface acessível.
+- Rigor na resolução de problemas com diferentes tipos de restrições.
+<!-- 
+📌 **Futuras melhorias possíveis**:
+- Exibir passos intermediários do tableau.
+- Mostrar as variáveis básicas e não básicas ao final.
+- Exportar relatório em `.txt` ou `.pdf`. -->
+
+---
