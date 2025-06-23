@@ -1,19 +1,19 @@
 # 📈 Método Simplex com Interface Gráfica
 
-Projeto desenvolvido para resolver problemas de **Programação Linear** utilizando o **Método Simplex**. A interface gráfica é construída com **Tkinter**, permitindo fácil interação com o usuário.
+Projeto desenvolvido para resolver problemas de **Programação Linear** utilizando o **Método Simplex**. A interface gráfica é construída com **Tkinter**, e a resolução do problema é feita com a biblioteca **SciPy**, tornando o processo rápido e confiável.
 
 ---
 
 ## ✅ Funcionalidades
 
-- Interface gráfica intuitiva (Tkinter).
-- Aceita problemas com 2 ou mais variáveis e restrições.
-<!-- - Suporte completo a restrições `<=`, `>=` e `=`. -->
-- Implementação completa do Método Simplex.
-- Exibe:
+- Interface gráfica moderna e intuitiva com **Tkinter + ThemedStyle**.
+- Aceita até 4 variáveis e 5 restrições.
+- Suporte completo a restrições `≤`, `≥` e `=`.
+- Implementação do método Simplex via `scipy.optimize.linprog`.
+- Cálculo automático de:
   - 🟢 Solução ótima.
   - 💰 Valor ótimo da função objetivo.
-  <!-- - ⚖️ Preços sombra (fase futura - opcional). -->
+  - ⚖️ Preços-sombra (valores dos multiplicadores de Lagrange).
 
 ---
 
@@ -21,113 +21,89 @@ Projeto desenvolvido para resolver problemas de **Programação Linear** utiliza
 
 ### 1. Instale os Requisitos
 
-Crie um ambiente virtual (opcional, mas recomendado):
+Recomenda-se criar um ambiente virtual:
 
 ```bash
 python -m venv venv
-venv\Scripts\activate  # Windows
+venv\Scripts\activate  # No Windows
 ```
 
 Instale as dependências:
 
 ```bash
-pip install numpy
+pip install numpy scipy ttkthemes
 ```
 
-> **Nota:** Não é necessário instalar `tkinter` via `pip`. Ele já vem incluso no Python padrão (distribuição oficial).
+> **Observação:** `tkinter` já vem incluso com o Python padrão (não instale via pip).
 
 ---
 
 ## 🧠 Como Usar
 
-1. Execute o script `simplex.py`:
-   ```bash
-   python simplex.py
-   ```
+1. Execute o script principal:
 
-2. Na interface:
-   - Informe o número de variáveis e restrições.
-   - Clique em **"Gerar Campos"**.
-   - Preencha:
-     - Coeficientes da função objetivo.
-     - Coeficientes de cada restrição.
-     <!-- - Operador (`<=`, `>=`, `=`). -->
-     - Termo constante (lado direito).
-   - Clique em **"Calcular"**.
+```bash
+python simplex2.py
+```
 
-3. O resultado será exibido em uma janela com:
-   - Solução ótima.
-   - Valor ótimo.
+2. Na interface aberta:
+
+- Preencha os **coeficientes da função objetivo**.
+- Preencha os coeficientes de até **5 restrições**, selecionando o tipo (`≤`, `≥`, `=`).
+- Informe o **lado direito** de cada restrição.
+- Escolha entre **Minimizar** ou **Maximizar**.
+- Clique em **Resolver**.
+
+3. O resultado será exibido logo abaixo com:
+
+- 🟢 Solução ótima das variáveis.
+- 💰 Valor ótimo da função objetivo.
+- ⚖️ Preços-sombra de cada restrição.
 
 ---
 
-<!-- ## 💡 Exemplo de Entrada
+## 💡 Exemplo Rápido
 
-- Função objetivo: `Max Z = 3x₁ + 2x₂`
-- Restrições:
-  - `x₁ + x₂ ≤ 4`
-  - `2x₁ + x₂ ≤ 5`
+### Problema:
 
-### Resultado Esperado:
+Maximizar `2x + 4y`  
+Sujeito a:
+
+- `x + 2y = 8`  
+- `3x + y ≤ 12`
+
+### Resultado esperado:
 
 ```plaintext
-Solução ótima: [0.0, 0.0]
-Valor ótimo: 0.0000
-``` -->
-<!-- 
-> Para outro exemplo com resultado positivo:
->
-> - FO: `Max Z = 3x₁ + 5x₂`
-> - Restrições:
->   - `x₁ ≤ 4`
->   - `2x₂ ≤ 12`
->
-> **Resultado:** `x₁ = 4`, `x₂ = 6`, `Z = 3*4 + 5*6 = 38` -->
+Solução ótima: [0.00, 4.00]
+Valor ótimo: R$ 16.00
+Preços-sombra (R$): [4.00, 0.00]
+```
 
 ---
-
+<!-- 
 ## 🧩 Estrutura do Código
 
-- `simplex.py`  
-  Implementação do método Simplex com duas fases + interface gráfica.
+- `simplex2.py`  
+  Script principal com interface gráfica e integração do solver `scipy.optimize.linprog`.
 
 ### Principais Componentes
 
 | Função | Descrição |
 |--------|-----------|
-| `simplex` | Resolve o problema usando o método Simplex com variáveis artificiais. |
-| `executar` | Coleta dados da interface e chama o solver. |
-| `gerar_campos` | Gera dinamicamente os campos de entrada conforme o número de variáveis/restrições. |
-| `root.mainloop()` | Inicializa a interface Tkinter. |
+| `simplex_method` | Resolve o problema com o método Simplex (SciPy). |
+| `shadow_prices` | Calcula os preços-sombra com base no dual. |
+| `SimplexApp` | Classe que define toda a interface e comportamento. |
+| `solve` | Coleta dados da UI, chama os métodos e exibe o resultado. | -->
 
----
 
-<!-- ## ⚠️ Possíveis Erros
-
-- **Erro de shape `inhomogeneous shape`**: ocorre quando as restrições têm comprimentos diferentes. Isso foi corrigido com tratamento uniforme das colunas extras.
-- **Problemas sem solução viável**: o programa detecta e alerta o usuário.
-
---- -->
-
-## 👨‍🎓 Público-Alvo
-
-- Estudantes de Engenharia, Matemática Aplicada, Administração e áreas correlatas.
-- Professores que queiram demonstrar o algoritmo Simplex visualmente.
-- Qualquer pessoa interessada em otimização linear.
-
----
-
-## 🏁 Considerações Finais
-
-Este projeto foi desenvolvido como parte da disciplina **M210 - Otimização I**, com foco em:
-
-- Clareza de implementação.
-- Interface acessível.
-- Rigor na resolução de problemas com diferentes tipos de restrições.
+Este projeto foi desenvolvido como parte da disciplina **M210 - Otimização I**
 <!-- 
-📌 **Futuras melhorias possíveis**:
-- Exibir passos intermediários do tableau.
-- Mostrar as variáveis básicas e não básicas ao final.
-- Exportar relatório em `.txt` ou `.pdf`. -->
+📌 **Possíveis melhorias futuras**:
+
+- Exibir os passos do tableau.
+- Destacar variáveis básicas e não básicas.
+- Exportar relatório em `.txt` ou `.pdf`.
+- Suporte a mais variáveis e restrições. -->
 
 ---
