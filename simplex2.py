@@ -59,7 +59,7 @@ def shadow_prices(A, b, c):
         dual_c[min_division_index] = impacto_custo
 
     # Calcula os preços-sombra de cada restrição:
-    result = linprog(dual_c, A_ub=dual_A, b_ub=dual_b, method='simplex')
+    result = linprog(dual_c, A_ub=dual_A, b_ub=dual_b, method='highs')
 
     return result
 
