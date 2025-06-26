@@ -1,6 +1,5 @@
 from scipy.optimize import linprog
 import numpy as np
-from tkinter import simpledialog
 
 def simplex_method(c, A_ub, b_ub, A_eq, b_eq, maximize=False):
     # Inverte os coeficientes para maximizar:
@@ -67,6 +66,7 @@ def shadow_prices(A, b, c):
 import tkinter as tk
 from tkinter import messagebox, ttk
 from ttkthemes import ThemedStyle
+from tkinter import simpledialog
 
 class SimplexApp:
     def __init__(self, root):
